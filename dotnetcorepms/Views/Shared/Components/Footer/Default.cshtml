@@ -1,0 +1,39 @@
+﻿<footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+        <b>Content Management System</b> (CMS)
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; @DateTime.Now.Year <a href="http://www.sumanthapa.me">Suman Thapa</a>.</strong> All rights reserved.
+</footer>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#data-table').DataTable({
+            //'ajax': 'https://api.myjson.com/bins/1us28',
+            dom: "lBfrtip",
+            buttons: [
+                { extend: "copy", className: "btn-sm btn-info", exportOptions: { modifier: { selected: true } } },
+                { extend: "csv", className: "btn-sm btn-info", exportOptions: { modifier: { selected: true } } },
+                { extend: "excel", className: "btn-sm btn-info", exportOptions: { modifier: { selected: true } } },
+                { extend: "pdf", className: "btn-sm btn-info", exportOptions: { modifier: { selected: true } } },
+                { extend: "print", className: "btn-sm btn-info", exportOptions: { modifier: { selected: true }, columns: [4, 5, 6, 7, 8, 9, 10, 11] }, title: "PMS", message: "other descriptions go here" },
+                { extend: "colvis", className: "btn-sm btn-info", exportOptions: { modifier: { selected: true } } },
+            ],
+            'select': { 'style': 'multi' },
+            'columnDefs': [{
+                'targets': 0,
+                'searchable': false,
+                'orderable': false,
+                'width': '1%',
+                'className': 'dt-body-center',
+                'render': function (data, type, full, meta) {
+                    return '<input type="checkbox">';
+                },
+                'checkboxes': { 'selectRow': true },
+            }],
+            'order': [1, 'asc'],
+        });
+    });
+</script>

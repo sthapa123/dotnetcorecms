@@ -1,0 +1,48 @@
+﻿@model dotnetcorepms.Models.UsersViewModel
+@{
+    ViewData["Title"] = "View";
+}
+<section class="content">
+
+    <!-- <div class="row">
+        <div class="col-md-12"> -->
+
+
+    <h3 class="page-title">Users</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            View
+        </div>
+
+        <div class="panel-body table-responsive">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td field-key="name">@(Model.dbModel.Name)</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td field-key="email">@(Model.dbModel.EmailID)</td>
+                            </tr>
+                            <tr>
+                                <th>Role</th>
+                                <td field-key="role">@(Model.ddlRoleLst.Where(x => x.Key.ToString() == Model.dbModel.RoleID.ToString()).Select(x => x.Value.ToString()).FirstOrDefault())</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+            @Html.ActionLink("Back to list", "Index", "Users", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <!-- </div>
+    </div> -->
+</section>
+

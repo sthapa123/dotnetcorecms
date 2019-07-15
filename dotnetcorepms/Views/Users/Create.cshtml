@@ -1,0 +1,63 @@
+﻿@model dotnetcorepms.Models.UsersViewModel
+<!-- Main content -->
+<section class="content">
+    <h3 class="page-title">Users</h3>
+    <form method="post" asp-controller="Users" asp-action="Create">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Create
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["MessageRegistration"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["MessageRegistration"]</p>
+                }
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.Name">Name*</label>
+                        <input asp-for="dbModel.Name" type="text" class="form-control" />
+                        <span asp-validation-for="dbModel.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.EmailID">Email*</label>
+                        <input asp-for="dbModel.EmailID" type="text" class="form-control" />
+                        <span asp-validation-for="dbModel.EmailID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.Username">Username*</label>
+                        <input asp-for="dbModel.Username" type="text" class="form-control" />
+                        <span asp-validation-for="dbModel.Username" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.Password">Password*</label>
+                        <input asp-for="dbModel.Password" type="password" class="form-control" />
+                        <span asp-validation-for="dbModel.Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.RoleID">Role*</label>
+                        <select asp-for="dbModel.RoleID" class="form-control"
+                                asp-items="@(new SelectList(Model.ddlRoleLst,"Key", "Value",0))"></select>
+                        <span asp-validation-for="dbModel.RoleID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input class="btn btn-danger" type="submit" value="Save">
+    </form>
+
+    <!-- </div>
+    </div> -->
+</section>

@@ -1,0 +1,39 @@
+﻿@model dotnetcorepms.Models.NotesViewModel
+@{
+    ViewData["Title"] = "View";
+}
+<section class="content">
+    <h3 class="page-title">Notes</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            View
+        </div>
+
+        <div class="panel-body table-responsive">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Member</th>
+                                <td field-key="role">@(Model.ddlUsers.Where(x => x.Key.ToString() == Model.dbModel.user_id.ToString()).Select(x => x.Value.ToString()).FirstOrDefault())</td>
+                            </tr>
+                            <tr>
+                                <th>Notes</th>
+                                <td field-key="email">@(Model.dbModel.note)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+            @Html.ActionLink("Back to list", "Index", "Notes", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <!-- </div>
+    </div> -->
+</section>
+

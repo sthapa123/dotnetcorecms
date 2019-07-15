@@ -1,0 +1,59 @@
+﻿@model dotnetcorepms.Models.UsersViewModel
+<!-- Main content -->
+<section class="content">
+    <h3 class="page-title">Users</h3>
+    <form method="post" asp-controller="Users" asp-action="Edit">
+        @Html.HiddenFor(m => m.dbModel.ID)
+        @Html.HiddenFor(m => m.dbModel.Password)
+        @Html.HiddenFor(m => m.dbModel.ConfirmPassword)
+        @Html.HiddenFor(m => m.dbModel.CreatedOn)
+        @Html.AntiForgeryToken()
+        <!-- CSRF protection to prevent phising / fake pages -->
+        @Html.ValidationSummary(true)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Edit
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["MessageRegistration"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["MessageRegistration"]</p>
+                }
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.Name">Name*</label>
+                        @Html.TextBoxFor(model => model.dbModel.Name, new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.EmailID">Email*</label>
+                        @Html.TextBoxFor(model => model.dbModel.EmailID, new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.EmailID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.Password">Password*</label>
+                        @Html.TextBoxFor(model => model.dbModel.Username, new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.RoleID">Role*</label>
+                        @Html.DropDownListFor(model => model.dbModel.RoleID, new SelectList(Model.ddlRoleLst, "Key", "Value"), new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.RoleID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input class="btn btn-danger" type="submit" value="Save">
+    </form>
+
+    <!-- </div>
+    </div> -->
+</section>

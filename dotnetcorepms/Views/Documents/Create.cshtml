@@ -1,0 +1,54 @@
+﻿@model dotnetcorepms.Models.DoucumentsViewModel
+<!-- Main content -->
+<section class="content">
+    <h3 class="page-title">Documents</h3>
+    <form method="post" enctype="multipart/form-data" asp-controller="Documents" asp-action="Create">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Create
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["MessageRegistration"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["MessageRegistration"]</p>
+                }
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.user_id">Member*</label>
+                        <select asp-for="dbModel.user_id" class="form-control"
+                                asp-items="@(new SelectList(Model.ddlUsers,"Key", "Value",0))"></select>
+                        <span asp-validation-for="dbModel.user_id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.name">Title</label>
+                        <input asp-for="dbModel.name" type="text" class="form-control" />
+                        <span asp-validation-for="dbModel.name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.description">Description</label>
+                        <textarea asp-for="dbModel.description" rows="10" cols="40" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="controls">
+                        <label class="control-label" asp-for="dbModel.file">File*</label>
+                        <input required type="file" title="" name="dbModel.file" multiple />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input class="btn btn-danger" type="submit" value="Save">
+    </form>
+
+    <!-- </div>
+    </div> -->
+</section>

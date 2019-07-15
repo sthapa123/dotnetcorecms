@@ -1,0 +1,40 @@
+﻿@model dotnetcorepms.Models.RolesViewModel
+<!-- Main content -->
+<section class="content">
+    <h3 class="page-title">Roles</h3>
+    <form method="post" asp-controller="Roles" asp-action="Delete">
+        @Html.HiddenFor(m => m.dbModel.RoleID)
+        @Html.HiddenFor(m => m.dbModel.Created_At)
+        @Html.AntiForgeryToken()
+        <!-- CSRF protection to prevent phising / fake pages -->
+        @Html.ValidationSummary(true)
+        <!-- checks if the  -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Are you sure you want to Delete?
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["MessageRegistration"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["MessageRegistration"]</p>
+                }
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.Rolename">Name*</label>
+                        @Html.TextBoxFor(model => model.dbModel.Rolename, new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.Rolename" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input class="btn btn-danger" type="submit" value="Delete">
+        @Html.ActionLink("Cancel", "Index", "Roles", null, new { @class = "btn btn-danger" })
+    </form>
+
+    <!-- </div>
+    </div> -->
+</section>
+

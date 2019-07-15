@@ -1,0 +1,110 @@
+﻿<section class="content-header">
+    <h1>
+        Forum
+        <small>Members Discussion Forum</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Forum</li>
+    </ol>
+</section>
+
+<div class="pad margin no-print">
+    <div class="callout callout-info" style="margin-bottom: 0!important;">
+        <h4>
+            <i class="fa fa-info-circle"></i> &nbsp;
+            Welcome,
+        </h4>
+        to the discussion forum of project related topics with other PMS users.
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="invoice">
+                    <div class="row">
+                        <div class="span4">
+                            <script type="text/javascript">
+                                    $(function () {
+                                        $('#comments-container').comments({
+                                            profilePictureURL: 'https://www.evatar.io/d2e8860457a4e16483876f0c837669ab',
+                                            roundProfilePictures: true,
+                                            textareaRows: 1,
+                                            enableAttachments: false,
+                                            enableUpvoting: false,
+                                            enableNavigation: false,
+                                            enableEditing: true,
+                                            // youtText : $('#username').val(),
+                                            getComments: function (success, error) {
+                                                $.ajax({
+                                                    type: 'get',
+                                                    url: '/Forum/GetComments_Json',
+                                                    success: function (commentsArray) {
+                                                        success(commentsArray)
+                                                    },
+                                                    error: error
+                                                });
+                                            },
+                                            postComment: function (commentJSON, success, error) {
+                                                $.ajax({
+                                                    type: 'post',
+                                                    url: '/Forum/PostComments_Json',
+                                                    dataType: 'json',
+                                                    contentType: "application/json; charset=utf-8",
+                                                    data: JSON.stringify(commentJSON),
+                                                    success: setTimeout(function () {
+                                                        success(commentJSON);
+                                                        // console.log("LOGTRACE", commentJSON);
+                                                    }, 500),
+                                                    error: error
+                                                });
+                                            },
+                                            //putComment: function (data, success, error) {
+                                            //    setTimeout(function () {
+                                            //        success(data);
+                                            //    }, 500);
+                                            //},
+                                            putComment: function (commentJSON, success, error) {
+                                                $.ajax({
+                                                    type: 'post',
+                                                    url: '/Forum/PutComment_Json/' + commentJSON.id,
+                                                    dataType: 'json',
+                                                    contentType: "application/json; charset=utf-8",
+                                                    data: JSON.stringify(commentJSON),
+                                                    success: setTimeout(function () {
+                                                        success(commentJSON);
+                                                    }, 500),
+                                                    error: error
+                                                });
+                                            },
+                                            //deleteComment: function (data, success, error) {
+                                            //    setTimeout(function () {
+                                            //        success();
+                                            //    }, 500);
+                                            //},
+                                            deleteComment: function (commentJSON, success, error) {
+                                                $.ajax({
+                                                    type: 'post',
+                                                    url: '/Forum/DeleteComment_Json/' + commentJSON.id,
+                                                    success: success,
+                                                    error: error
+                                                });
+                                            },
+                                            upvoteComment: function (data, success, error) {
+                                                setTimeout(function () {
+                                                    success(data);
+                                                }, 500);
+                                            },
+                                            uploadAttachments: function (dataArray, success, error) {
+                                                setTimeout(function () {
+                                                    success(dataArray);
+                                                }, 500);
+                                            },
+                                        });
+                                    });
+                                                            </script>
+                            <div id="comments-container"></div>
+                        </div>       
+                </div>
+</section>
+<!-- /.content -->
+<div class="clearfix"></div>

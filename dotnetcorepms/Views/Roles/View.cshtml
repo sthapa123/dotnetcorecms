@@ -1,0 +1,40 @@
+﻿@model dotnetcorepms.Models.RolesViewModel
+@{
+    ViewData["Title"] = "View";
+}
+<section class="content">
+
+    <!-- <div class="row">
+        <div class="col-md-12"> -->
+
+
+    <h3 class="page-title">Roles</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            View
+        </div>
+
+        <div class="panel-body table-responsive">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Title</th>
+                                <td field-key="name">@(Model.dbModel.Rolename)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+            @Html.ActionLink("Back to list", "Index", "Roles", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <!-- </div>
+    </div> -->
+</section>
+

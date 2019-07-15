@@ -1,0 +1,5 @@
+1. Unable to upload new documents in the .NET Core application
+2. users edit/delete all
+3. Member login permission problem
+4. Notes/Documents redirection problem after insertion
+5. Create notes no select member

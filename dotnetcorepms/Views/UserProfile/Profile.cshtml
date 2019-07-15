@@ -1,0 +1,30 @@
+﻿@model dotnetcorepms.Models.UsersModel
+@{
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<div class="container">
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading">Profile</div>
+        <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="control-label" asp-for="Name">Name</label>
+                        <input asp-for="Name" readonly="readonly" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="control-label" asp-for="EmailID">EmailID</label>
+                        <input asp-for="EmailID" readonly="readonly" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="control-label" asp-for="Username">Username</label>
+                        <input asp-for="Username" readonly="readonly" type="text" class="form-control" />
+                    </div>
+                </div>    
+        </div>
+    </div>
+</div>

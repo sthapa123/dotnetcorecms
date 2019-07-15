@@ -1,0 +1,57 @@
+﻿@model dotnetcorepms.Models.DoucumentsViewModel
+<!-- Main content -->
+<section class="content">
+    <h3 class="page-title">Documents</h3>
+    <form method="post" asp-controller="Documents" asp-action="Edit">
+        @Html.HiddenFor(m => m.dbModel.id)
+        @Html.HiddenFor(m => m.dbModel.created_at)
+        @Html.AntiForgeryToken()
+        <!-- CSRF protection to prevent phising / fake pages -->
+        @Html.ValidationSummary(true)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Edit
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["MessageRegistration"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["MessageRegistration"]</p>
+                }
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.user_id">Member</label>
+                        @Html.DropDownListFor(model => model.dbModel.user_id, new SelectList(Model.ddlUsers, "Key", "Value"), new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.user_id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.name">Title</label>
+                        @Html.TextBoxFor(model => model.dbModel.name, new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.description">Email*</label>
+                        @Html.TextAreaFor(model => model.dbModel.description, new { @class = "form-control", rows = 10, cols = 60 })
+                        <span asp-validation-for="dbModel.description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="controls">
+                        <label class="control-label" asp-for="dbModel.file">File*</label> @if (Model.dbModel.file != string.Empty && Model.dbModel.file != null) { <a href="~/files/@Model.dbModel.file" target="_blank">Download file</a>}
+                        <input required type="file" title="" name="dbModel.file" multiple />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <input class="btn btn-danger" type="submit" value="Update">
+    </form>
+
+    <!-- </div>
+    </div> -->
+</section>

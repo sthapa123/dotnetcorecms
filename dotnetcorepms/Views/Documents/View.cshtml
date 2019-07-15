@@ -1,0 +1,59 @@
+﻿@model dotnetcorepms.Models.DoucumentsViewModel
+@{
+    ViewData["Title"] = "View";
+}
+<section class="content">
+
+    <!-- <div class="row">
+        <div class="col-md-12"> -->
+
+
+    <h3 class="page-title">Documents</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            View
+        </div>
+
+        <div class="panel-body table-responsive">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Member</th>
+                                <td field-key="role">@(Model.ddlUsers.Where(x => x.Key.ToString() == Model.dbModel.user_id.ToString()).Select(x => x.Value.ToString()).FirstOrDefault())</td>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <td field-key="email">@(Model.dbModel.name)</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td field-key="email">@(Model.dbModel.description)</td>
+                            </tr>
+                            <tr>
+                                <th>File</th>
+                                <td>
+                                    @if (Model.dbModel.file != string.Empty && Model.dbModel.file != null)
+                                    {
+                                        <a href="~/files/@(Model.dbModel.file)" target="_blank">Download file</a>}
+                                    else
+                                    {
+                                        <b>No File</b>}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+            @Html.ActionLink("Back to list", "Index", "Documents", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <!-- </div>
+    </div> -->
+</section>
+

@@ -1,0 +1,47 @@
+﻿@model dotnetcorepms.Models.NotesViewModel
+<!-- Main content -->
+<section class="content">
+    <h3 class="page-title">Notes</h3>
+    <form method="post" asp-controller="Notes" asp-action="Delete">
+        @Html.HiddenFor(m => m.dbModel.id)
+        @Html.HiddenFor(m => m.dbModel.created_at)
+        @Html.AntiForgeryToken()
+        <!-- CSRF protection to prevent phising / fake pages -->
+        @Html.ValidationSummary(true)
+        <!-- checks if the  -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Are you sure you want to Delete?
+            </div>
+
+            <div class="panel-body">
+                @if (TempData["MessageRegistration"] != null)
+                {
+                    <p class="alert alert-success" id="successMessage">@TempData["MessageRegistration"]</p>
+                }
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.user_id">Member*</label>
+                        @Html.DropDownListFor(model => model.dbModel.user_id, new SelectList(Model.ddlUsers, "Key", "Value"), new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.user_id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label class="control-label" asp-for="dbModel.note">Note</label>
+                        @Html.TextBoxFor(model => model.dbModel.note, new { @class = "form-control" })
+                        <span asp-validation-for="dbModel.note" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input class="btn btn-danger" type="submit" value="Delete">
+        @Html.ActionLink("Cancel", "Index", "Notes", null, new { @class = "btn btn-danger" })
+    </form>
+
+    <!-- </div>
+    </div> -->
+</section>
+
